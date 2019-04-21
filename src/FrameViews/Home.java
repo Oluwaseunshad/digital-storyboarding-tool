@@ -5,6 +5,8 @@ import java.awt.event.*;
 import javax.swing.*;
 import java.awt.BorderLayout;
 import javax.swing.event.*;
+import java.sql.*;
+import java.util.*;
 
 
 public class Home implements ItemListener {
@@ -18,7 +20,9 @@ public class Home implements ItemListener {
     DefaultListModel list3Model = new DefaultListModel();
     static JList list1, list2, list3;
     static JPanel pan1, pan2, pan3;
-    String[] elements = {"Papaya", "Orange", "Apple", "Mango", "Pear", "Avakado"};
+    static ArrayList <String> toDoElements = new ArrayList();
+    static ArrayList <String> inProgressElements = new ArrayList();
+
 
     public void addComponentToPane(Container pane) {
         //Put the JComboBox in a JPanel to get a nicer look.
@@ -38,9 +42,13 @@ public class Home implements ItemListener {
         card2.add(new JTextField("Create New StoryBoard", 20));
 
         JPanel card3 = new JPanel();
-        for (int i = 0; i < elements.length; i++) {
-            list1Model.addElement(elements[i]);
+        for (int i = 0; i < toDoElements.size(); i++) {
+            list1Model.addElement(toDoElements.get(i));
         }
+        for (int i = 0; i < inProgressElements.size(); i++) {
+            list2Model.addElement(inProgressElements.get(i));
+        }
+
         list1 = new JList(list1Model);
         list1.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         JScrollPane sp1 = new JScrollPane(list1);
@@ -156,6 +164,23 @@ public class Home implements ItemListener {
 
     public static void main(String[] args) {
 
+        try{
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection connection=DriverManager.getConnection(
+                    "jdbc:mysql://localhost/mydb?user=cs6640&password=12345678&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC");
+            Statement stmt=connection.createStatement();
+            ResultSet rs=stmt.executeQuery("select * from requirements where status='to-do'");
+            PreparedStatement ps = connection.prepareStatement("select * from requirements where status='inProgress'");
+            ResultSet rs2=ps.executeQuery();
+            while(rs.next())
+                toDoElements.add(rs.getString(2));
+            while(rs2.next())
+                inProgressElements.add(rs2.getString(2));
+            connection.close();
+           /* PreparedStatement ps = connection.prepareStatement("CREATE DATABASE mydb");
+            int result = ps.executeUpdate();
+            System.out.print(result);*/
+        }catch(Exception e){ System.out.println(e);}
         /* Use an appropriate Look and Feel */
 
         try {
@@ -202,6 +227,18 @@ public class Home implements ItemListener {
             addedContenttoList2 = item.toString();
             System.out.println(addedContenttoList2);
             //make changes to database from here
+            try{
+                Class.forName("com.mysql.cj.jdbc.Driver");
+                Connection connection=DriverManager.getConnection(
+                        "jdbc:mysql://localhost/mydb?user=cs6640&password=12345678&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC");
+                PreparedStatement statement = connection.prepareStatement("UPDATE requirements SET status='inProgress' WHERE name = ?");
+                statement.setString(1, addedContenttoList2);
+                statement.executeUpdate();
+                connection.close();
+           /* PreparedStatement ps = connection.prepareStatement("CREATE DATABASE mydb");
+            int result = ps.executeUpdate();
+            System.out.print(result);*/
+            }catch(Exception e){ System.out.println(e);}
         }
 
         public void intervalRemoved(ListDataEvent evt) {
