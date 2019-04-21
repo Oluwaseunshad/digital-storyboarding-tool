@@ -4,6 +4,7 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 import java.awt.BorderLayout;
+import javax.swing.event.*;
 
 
 public class Home implements ItemListener {
@@ -12,18 +13,17 @@ public class Home implements ItemListener {
     final static String createNewSb = "Create New StoryBoard";
     final static String trackReq = "Track Requirements";
     ListTransferHandler lh;
-    JPanel panel = new JPanel(new GridLayout(1, 3));
     DefaultListModel list1Model = new DefaultListModel();
     DefaultListModel list2Model = new DefaultListModel();
     DefaultListModel list3Model = new DefaultListModel();
     static JList list1, list2, list3;
     static JPanel pan1, pan2, pan3;
-    String [] elements = {"Papaya", "Orange", "Apple", "Mango", "Pear", "Avakado"};
-    
+    String[] elements = {"Papaya", "Orange", "Apple", "Mango", "Pear", "Avakado"};
+
     public void addComponentToPane(Container pane) {
         //Put the JComboBox in a JPanel to get a nicer look.
         JPanel comboBoxPane = new JPanel(); //use FlowLayout
-        String comboBoxItems[] = { home, createNewSb, trackReq };
+        String comboBoxItems[] = {home, createNewSb, trackReq};
         lh = new ListTransferHandler();
         JComboBox cb = new JComboBox(comboBoxItems);
         cb.setEditable(false);
@@ -38,13 +38,13 @@ public class Home implements ItemListener {
         card2.add(new JTextField("Create New StoryBoard", 20));
 
         JPanel card3 = new JPanel();
-        for(int i= 0; i<elements.length; i++){
+        for (int i = 0; i < elements.length; i++) {
             list1Model.addElement(elements[i]);
         }
         list1 = new JList(list1Model);
         list1.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         JScrollPane sp1 = new JScrollPane(list1);
-        sp1.setPreferredSize(new Dimension(400,100));
+        sp1.setPreferredSize(new Dimension(400, 100));
         list1.setDragEnabled(true);
         list1.setTransferHandler(lh);
         list1.setDropMode(DropMode.ON_OR_INSERT);
@@ -56,9 +56,11 @@ public class Home implements ItemListener {
         list2.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         list2.setDragEnabled(true);
         JScrollPane sp2 = new JScrollPane(list2);
-        sp2.setPreferredSize(new Dimension(400,100));
+        sp2.setPreferredSize(new Dimension(400, 100));
         list2.setTransferHandler(lh);
         list2.setDropMode(DropMode.INSERT);
+        DefaultListModel model2 = (DefaultListModel) list2.getModel();
+        model2.addListDataListener(new MyListDataListener());
         pan2 = new JPanel(new BorderLayout());
         pan2.add(sp2, BorderLayout.CENTER);
         pan2.setBorder(BorderFactory.createTitledBorder("In Progress"));
@@ -67,7 +69,7 @@ public class Home implements ItemListener {
         list3.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         list3.setDragEnabled(true);
         JScrollPane sp3 = new JScrollPane(list3);
-        sp3.setPreferredSize(new Dimension(400,100));
+        sp3.setPreferredSize(new Dimension(400, 100));
         list3.setTransferHandler(lh);
         list3.setDropMode(DropMode.ON);
         pan3 = new JPanel(new BorderLayout());
@@ -82,22 +84,24 @@ public class Home implements ItemListener {
         card3.add(pan3);
 
 
-       /* target.addMouseListener(new MouseAdapter() {
+        list2.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent evt) {
-                JList list = (JList)evt.getSource();
+                JList list = (JList) evt.getSource();
                 if (evt.getClickCount() == 2) {
 
                     // Double-click detected
                     int index = list.locationToIndex(evt.getPoint());
-                    System.out.println("index: "+index);
+                    System.out.println("index: " + index);
+                    String s = (String) list.getSelectedValue();
+                    System.out.println("Value Selected: " + s);
                 } else if (evt.getClickCount() == 3) {
 
                     // Triple-click detected
                     int index = list.locationToIndex(evt.getPoint());
-                    System.out.println("index: "+index);
+                    System.out.println("index: " + index);
                 }
             }
-        });*/
+        });
 
 
         //Create the panel that contains the "cards".
@@ -111,25 +115,25 @@ public class Home implements ItemListener {
     }
 
     private ListCellRenderer<? super String> getRenderer() {
-        return new DefaultListCellRenderer(){
+        return new DefaultListCellRenderer() {
             @Override
             public Component getListCellRendererComponent(JList<?> list,
                                                           Object value, int index, boolean isSelected,
                                                           boolean cellHasFocus) {
-                JLabel listCellRendererComponent = (JLabel) super.getListCellRendererComponent(list, value, index, isSelected,cellHasFocus);
-                listCellRendererComponent.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0,Color.BLACK));
+                JLabel listCellRendererComponent = (JLabel) super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
+                listCellRendererComponent.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, Color.BLACK));
                 return listCellRendererComponent;
             }
         };
     }
 
     public void itemStateChanged(ItemEvent evt) {
-        CardLayout cl = (CardLayout)(cards.getLayout());
-        cl.show(cards, (String)evt.getItem());
+        CardLayout cl = (CardLayout) (cards.getLayout());
+        cl.show(cards, (String) evt.getItem());
     }
 
 
-/**
+    /**
      * Create the GUI and show it.  For thread safety,
      * this method should be invoked from the
      * event dispatch thread.
@@ -152,7 +156,7 @@ public class Home implements ItemListener {
 
     public static void main(String[] args) {
 
-/* Use an appropriate Look and Feel */
+        /* Use an appropriate Look and Feel */
 
         try {
             //UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
@@ -167,7 +171,7 @@ public class Home implements ItemListener {
             ex.printStackTrace();
         }
 
-/* Turn off metal's use of bold fonts */
+        /* Turn off metal's use of bold fonts */
 
         UIManager.put("swing.boldMetal", Boolean.FALSE);
 
@@ -178,5 +182,46 @@ public class Home implements ItemListener {
                 createAndShowGUI();
             }
         });
+    }
+
+
+    class MyListDataListener implements ListDataListener {
+        String addedContenttoList2 = "";
+        public void intervalAdded(ListDataEvent evt) {
+            DefaultListModel model = (DefaultListModel) evt.getSource();
+            int start = evt.getIndex0();
+            int end = evt.getIndex1();
+            int count = end - start + 1;
+            Object item = null;
+
+            for (int i = start; i <= end; i++) {
+                item = model.getElementAt(i);
+            }
+            System.out.println("intervalAdded: " + start +
+                    ", " + end);
+            addedContenttoList2 = item.toString();
+            System.out.println(addedContenttoList2);
+            //make changes to database from here
+        }
+
+        public void intervalRemoved(ListDataEvent evt) {
+            int start = evt.getIndex0();
+            int end = evt.getIndex1();
+            int count = end - start + 1;
+            System.out.println("intervalRemoved: " + start +
+                    ", " + end);
+        }
+
+        public void contentsChanged(ListDataEvent evt) {
+            DefaultListModel model = (DefaultListModel) evt.getSource();
+            int start = evt.getIndex0();
+            int end = evt.getIndex1();
+            int count = end - start + 1;
+            for (int i = start; i <= end; i++) {
+                Object item = model.getElementAt(i);
+            }
+            System.out.println("contentsChanged: " + start +
+                    ", " + end);
+        }
     }
 }
