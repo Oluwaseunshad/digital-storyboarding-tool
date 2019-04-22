@@ -22,6 +22,17 @@ public class Home implements ItemListener {
     static JPanel pan1, pan2, pan3;
     static ArrayList <String> toDoElements = new ArrayList();
     static ArrayList <String> inProgressElements = new ArrayList();
+    static ArrayList <String> doneElements = new ArrayList();
+    static Popup listOnePops;
+    static Popup listTwoPops;
+    static Popup listThreePops;
+    static JPanel listOnePopUpPanel;
+    static JPanel listTwoPopUpPanel;
+    static JPanel listThreePopUpPanel;
+    PopupFactory popupFactory;
+    static JLabel popUpLabel;
+    static JLabel listTwoPopUpLabel;
+    static JLabel listThreePopUpLabel;
 
 
     public void addComponentToPane(Container pane) {
@@ -48,7 +59,66 @@ public class Home implements ItemListener {
         for (int i = 0; i < inProgressElements.size(); i++) {
             list2Model.addElement(inProgressElements.get(i));
         }
+        for (int i = 0; i < doneElements.size(); i++) {
+            list3Model.addElement(doneElements.get(i));
+        }
+        popupFactory = new PopupFactory();
+        popUpLabel = new JLabel("");
+        listTwoPopUpLabel = new JLabel("");
+        listThreePopUpLabel = new JLabel("");
+        // create a new button
+        JButton listOneButton = new JButton("OK");
+        listOneButton.addActionListener(new ActionListener() {
 
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //your actions
+                String d = e.getActionCommand();
+                // if ok buton is pressed hide the popup
+                if (d.equals("OK")) {
+                    listOnePops.hide();
+
+                    // create a popup
+                    listOnePops = popupFactory.getPopup(list1, listOnePopUpPanel, 180, 100);
+                }
+            }
+        });
+        JButton listTwoButton = new JButton("OK");
+        listTwoButton.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //your actions
+                String d = e.getActionCommand();
+                // if ok buton is pressed hide the popup
+                if (d.equals("OK")) {
+                    listTwoPops.hide();
+
+                    // create a popup
+                    listTwoPops = popupFactory.getPopup(list2, listTwoPopUpPanel, 180, 100);
+                }
+            }
+        });
+        JButton listThreeButton = new JButton("OK");
+        listThreeButton.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //your actions
+                String d = e.getActionCommand();
+                // if ok buton is pressed hide the popup
+                if (d.equals("OK")) {
+                    listThreePops.hide();
+
+                    // create a popup
+                    listThreePops = popupFactory.getPopup(list3, listThreePopUpPanel, 180, 100);
+                }
+            }
+        });
+        listOnePopUpPanel = new JPanel();
+        listOnePopUpPanel.add(popUpLabel);
+        listOnePopUpPanel.add(listOneButton);
+        listOnePopUpPanel.setLayout(new GridLayout(2, 1));
         list1 = new JList(list1Model);
         list1.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         JScrollPane sp1 = new JScrollPane(list1);
@@ -56,10 +126,15 @@ public class Home implements ItemListener {
         list1.setDragEnabled(true);
         list1.setTransferHandler(lh);
         list1.setDropMode(DropMode.ON_OR_INSERT);
+        listOnePops = popupFactory.getPopup(list1, listOnePopUpPanel, 180, 100);
         pan1 = new JPanel(new BorderLayout());
         pan1.add(sp1, BorderLayout.CENTER);
         pan1.setBorder(BorderFactory.createTitledBorder("To-Do"));
 
+        listTwoPopUpPanel = new JPanel();
+        listTwoPopUpPanel.add(listTwoPopUpLabel);
+        listTwoPopUpPanel.add(listTwoButton);
+        listTwoPopUpPanel.setLayout(new GridLayout(2, 1));
         list2 = new JList(list2Model);
         list2.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         list2.setDragEnabled(true);
@@ -67,19 +142,27 @@ public class Home implements ItemListener {
         sp2.setPreferredSize(new Dimension(400, 100));
         list2.setTransferHandler(lh);
         list2.setDropMode(DropMode.INSERT);
+        listTwoPops = popupFactory.getPopup(list2, listTwoPopUpPanel, 180, 100);
         DefaultListModel model2 = (DefaultListModel) list2.getModel();
-        model2.addListDataListener(new MyListDataListener());
+        model2.addListDataListener(new ListTwoDataListener());
         pan2 = new JPanel(new BorderLayout());
         pan2.add(sp2, BorderLayout.CENTER);
         pan2.setBorder(BorderFactory.createTitledBorder("In Progress"));
 
+        listThreePopUpPanel = new JPanel();
+        listThreePopUpPanel.add(listThreePopUpLabel);
+        listThreePopUpPanel.add(listThreeButton);
+        listThreePopUpPanel.setLayout(new GridLayout(2, 1));
         list3 = new JList(list3Model);
         list3.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         list3.setDragEnabled(true);
         JScrollPane sp3 = new JScrollPane(list3);
         sp3.setPreferredSize(new Dimension(400, 100));
         list3.setTransferHandler(lh);
-        list3.setDropMode(DropMode.ON);
+        list3.setDropMode(DropMode.INSERT);
+        listThreePops = popupFactory.getPopup(list3, listThreePopUpPanel, 180, 100);
+        DefaultListModel model3= (DefaultListModel) list3.getModel();
+        model3.addListDataListener(new ListThreeDataListener());
         pan3 = new JPanel(new BorderLayout());
         pan3.add(sp3, BorderLayout.CENTER);
         pan3.setBorder(BorderFactory.createTitledBorder("Done"));
@@ -92,9 +175,16 @@ public class Home implements ItemListener {
         card3.add(pan3);
 
 
-        list2.addMouseListener(new MouseAdapter() {
+        list1.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent evt) {
                 JList list = (JList) evt.getSource();
+                Connection connection = null;
+                try{
+                    Class.forName("com.mysql.cj.jdbc.Driver");
+                    connection=DriverManager.getConnection(
+                            "jdbc:mysql://localhost/mydb?user=cs6640&password=12345678&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC");
+                } catch(Exception e){ System.out.println(e);}
+
                 if (evt.getClickCount() == 2) {
 
                     // Double-click detected
@@ -102,6 +192,16 @@ public class Home implements ItemListener {
                     System.out.println("index: " + index);
                     String s = (String) list.getSelectedValue();
                     System.out.println("Value Selected: " + s);
+                    try {
+                        PreparedStatement statement = connection.prepareStatement("SELECT src FROM requirements WHERE name = ?");
+                        statement.setString(1, s);
+                        ResultSet rs = statement.executeQuery();
+                        while (rs.next())
+                            popUpLabel.setText(rs.getString(1));
+                        listOnePops.show();
+                        connection.close();
+                    }catch(Exception e){ System.out.println(e);}
+
                 } else if (evt.getClickCount() == 3) {
 
                     // Triple-click detected
@@ -111,6 +211,77 @@ public class Home implements ItemListener {
             }
         });
 
+        list2.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent evt) {
+                JList list = (JList) evt.getSource();
+                Connection connection = null;
+                try{
+                    Class.forName("com.mysql.cj.jdbc.Driver");
+                    connection=DriverManager.getConnection(
+                            "jdbc:mysql://localhost/mydb?user=cs6640&password=12345678&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC");
+                } catch(Exception e){ System.out.println(e);}
+
+                if (evt.getClickCount() == 2) {
+
+                    // Double-click detected
+                    int index = list.locationToIndex(evt.getPoint());
+                    System.out.println("index: " + index);
+                    String s = (String) list.getSelectedValue();
+                    System.out.println("Value Selected: " + s);
+                    try {
+                        PreparedStatement statement = connection.prepareStatement("SELECT src FROM requirements WHERE name = ?");
+                        statement.setString(1, s);
+                        ResultSet rs = statement.executeQuery();
+                        while (rs.next())
+                            listTwoPopUpLabel.setText(rs.getString(1));
+                        listTwoPops.show();
+                        connection.close();
+                    }catch(Exception e){ System.out.println(e);}
+
+                } else if (evt.getClickCount() == 3) {
+
+                    // Triple-click detected
+                    int index = list.locationToIndex(evt.getPoint());
+                    System.out.println("index: " + index);
+                }
+            }
+        });
+
+        list3.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent evt) {
+                JList list = (JList) evt.getSource();
+                Connection connection = null;
+                try{
+                    Class.forName("com.mysql.cj.jdbc.Driver");
+                    connection=DriverManager.getConnection(
+                            "jdbc:mysql://localhost/mydb?user=cs6640&password=12345678&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC");
+                } catch(Exception e){ System.out.println(e);}
+
+                if (evt.getClickCount() == 2) {
+
+                    // Double-click detected
+                    int index = list.locationToIndex(evt.getPoint());
+                    System.out.println("index: " + index);
+                    String s = (String) list.getSelectedValue();
+                    System.out.println("Value Selected: " + s);
+                    try {
+                        PreparedStatement statement = connection.prepareStatement("SELECT src FROM requirements WHERE name = ?");
+                        statement.setString(1, s);
+                        ResultSet rs = statement.executeQuery();
+                        while (rs.next())
+                            listThreePopUpLabel.setText(rs.getString(1));
+                        listThreePops.show();
+                        connection.close();
+                    }catch(Exception e){ System.out.println(e);}
+
+                } else if (evt.getClickCount() == 3) {
+
+                    // Triple-click detected
+                    int index = list.locationToIndex(evt.getPoint());
+                    System.out.println("index: " + index);
+                }
+            }
+        });
 
         //Create the panel that contains the "cards".
         cards = new JPanel(new CardLayout());
@@ -120,6 +291,8 @@ public class Home implements ItemListener {
         pane.setPreferredSize(new Dimension(500, 200));
         pane.add(comboBoxPane, BorderLayout.WEST);
         pane.add(cards, BorderLayout.CENTER);
+
+
     }
 
     private ListCellRenderer<? super String> getRenderer() {
@@ -169,13 +342,17 @@ public class Home implements ItemListener {
             Connection connection=DriverManager.getConnection(
                     "jdbc:mysql://localhost/mydb?user=cs6640&password=12345678&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC");
             Statement stmt=connection.createStatement();
-            ResultSet rs=stmt.executeQuery("select * from requirements where status='to-do'");
-            PreparedStatement ps = connection.prepareStatement("select * from requirements where status='inProgress'");
+            ResultSet rs=stmt.executeQuery("select name from requirements where status='to-do'");
+            PreparedStatement ps = connection.prepareStatement("select name from requirements where status='inProgress'");
+            PreparedStatement ps2 = connection.prepareStatement("select name from requirements where status='done'");
             ResultSet rs2=ps.executeQuery();
+            ResultSet rs3=ps2.executeQuery();
             while(rs.next())
-                toDoElements.add(rs.getString(2));
+                toDoElements.add(rs.getString(1));
             while(rs2.next())
-                inProgressElements.add(rs2.getString(2));
+                inProgressElements.add(rs2.getString(1));
+            while(rs3.next())
+                doneElements.add(rs3.getString(1));
             connection.close();
            /* PreparedStatement ps = connection.prepareStatement("CREATE DATABASE mydb");
             int result = ps.executeUpdate();
@@ -210,7 +387,7 @@ public class Home implements ItemListener {
     }
 
 
-    class MyListDataListener implements ListDataListener {
+    class ListTwoDataListener implements ListDataListener {
         String addedContenttoList2 = "";
         public void intervalAdded(ListDataEvent evt) {
             DefaultListModel model = (DefaultListModel) evt.getSource();
@@ -233,6 +410,58 @@ public class Home implements ItemListener {
                         "jdbc:mysql://localhost/mydb?user=cs6640&password=12345678&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC");
                 PreparedStatement statement = connection.prepareStatement("UPDATE requirements SET status='inProgress' WHERE name = ?");
                 statement.setString(1, addedContenttoList2);
+                statement.executeUpdate();
+                connection.close();
+           /* PreparedStatement ps = connection.prepareStatement("CREATE DATABASE mydb");
+            int result = ps.executeUpdate();
+            System.out.print(result);*/
+            }catch(Exception e){ System.out.println(e);}
+        }
+
+        public void intervalRemoved(ListDataEvent evt) {
+            int start = evt.getIndex0();
+            int end = evt.getIndex1();
+            int count = end - start + 1;
+            System.out.println("intervalRemoved: " + start +
+                    ", " + end);
+        }
+
+        public void contentsChanged(ListDataEvent evt) {
+            DefaultListModel model = (DefaultListModel) evt.getSource();
+            int start = evt.getIndex0();
+            int end = evt.getIndex1();
+            int count = end - start + 1;
+            for (int i = start; i <= end; i++) {
+                Object item = model.getElementAt(i);
+            }
+            System.out.println("contentsChanged: " + start +
+                    ", " + end);
+        }
+    }
+
+    class ListThreeDataListener implements ListDataListener {
+        String addedContenttoList3 = "";
+        public void intervalAdded(ListDataEvent evt) {
+            DefaultListModel model = (DefaultListModel) evt.getSource();
+            int start = evt.getIndex0();
+            int end = evt.getIndex1();
+            int count = end - start + 1;
+            Object item = null;
+
+            for (int i = start; i <= end; i++) {
+                item = model.getElementAt(i);
+            }
+            System.out.println("intervalAdded: " + start +
+                    ", " + end);
+            addedContenttoList3 = item.toString();
+            System.out.println(addedContenttoList3);
+            //make changes to database from here
+            try{
+                Class.forName("com.mysql.cj.jdbc.Driver");
+                Connection connection=DriverManager.getConnection(
+                        "jdbc:mysql://localhost/mydb?user=cs6640&password=12345678&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC");
+                PreparedStatement statement = connection.prepareStatement("UPDATE requirements SET status='Done' WHERE name = ?");
+                statement.setString(1, addedContenttoList3);
                 statement.executeUpdate();
                 connection.close();
            /* PreparedStatement ps = connection.prepareStatement("CREATE DATABASE mydb");

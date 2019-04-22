@@ -2,14 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a36f0b7e-861b-48cd-ad5a-4fb108d1130d" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/mysql_connector.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/digital-storyboarding-tool.iml" beforeDir="false" afterPath="$PROJECT_DIR$/digital-storyboarding-tool.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/digital-storyboarding-tool/FrameViews/Home$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/digital-storyboarding-tool/FrameViews/Home$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/digital-storyboarding-tool/FrameViews/Home$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/digital-storyboarding-tool/FrameViews/Home$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/digital-storyboarding-tool/FrameViews/Home$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/digital-storyboarding-tool/FrameViews/Home$3.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/digital-storyboarding-tool/FrameViews/Home$MyListDataListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/digital-storyboarding-tool/FrameViews/Home$MyListDataListener.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/digital-storyboarding-tool/FrameViews/Home.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/digital-storyboarding-tool/FrameViews/Home.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/digital-storyboarding-tool/FrameViews/Home$MyListDataListener.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/FrameViews/Home.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FrameViews/Home.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -24,14 +17,20 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/FrameViews/Home.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1247">
-              <caret line="173" column="44" selection-start-line="173" selection-start-column="44" selection-end-line="173" selection-end-column="44" />
+            <state relative-caret-position="-2803">
+              <caret line="272" column="37" selection-start-line="272" selection-start-column="37" selection-end-line="272" selection-end-column="37" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#4842#5480#0" expanded="true" />
-                <element signature="e#5479#5480#0" expanded="true" />
-                <element signature="e#8183#8184#0" expanded="true" />
-                <element signature="e#8233#8234#0" expanded="true" />
+                <element signature="e#7119#8846#0" expanded="true" />
+                <element signature="e#8845#8846#0" expanded="true" />
+                <element signature="e#8881#10615#0" expanded="true" />
+                <element signature="e#10614#10615#0" expanded="true" />
+                <element signature="e#10650#12384#0" expanded="true" />
+                <element signature="e#12383#12384#0" expanded="true" />
+                <element signature="e#12833#13471#0" expanded="true" />
+                <element signature="e#13470#13471#0" expanded="true" />
+                <element signature="e#16531#16532#0" expanded="true" />
+                <element signature="e#16581#16582#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -80,6 +79,7 @@
       <find>pane</find>
       <find>lh</find>
       <find>createMenuBar</find>
+      <find>popUpLabel</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -147,7 +147,7 @@
     <property name="Repository.Attach.Annotations" value="false" />
     <property name="Repository.Attach.JavaDocs" value="false" />
     <property name="Repository.Attach.Sources" value="false" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1555878900613" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1555896015107" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../Downloads/mysql-connector-java-8.0.15/mysql-connector-java-8.0.15.jar!/" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
@@ -299,14 +299,20 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/FrameViews/Home.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1247">
-          <caret line="173" column="44" selection-start-line="173" selection-start-column="44" selection-end-line="173" selection-end-column="44" />
+        <state relative-caret-position="-2803">
+          <caret line="272" column="37" selection-start-line="272" selection-start-column="37" selection-end-line="272" selection-end-column="37" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#4842#5480#0" expanded="true" />
-            <element signature="e#5479#5480#0" expanded="true" />
-            <element signature="e#8183#8184#0" expanded="true" />
-            <element signature="e#8233#8234#0" expanded="true" />
+            <element signature="e#7119#8846#0" expanded="true" />
+            <element signature="e#8845#8846#0" expanded="true" />
+            <element signature="e#8881#10615#0" expanded="true" />
+            <element signature="e#10614#10615#0" expanded="true" />
+            <element signature="e#10650#12384#0" expanded="true" />
+            <element signature="e#12383#12384#0" expanded="true" />
+            <element signature="e#12833#13471#0" expanded="true" />
+            <element signature="e#13470#13471#0" expanded="true" />
+            <element signature="e#16531#16532#0" expanded="true" />
+            <element signature="e#16581#16582#0" expanded="true" />
           </folding>
         </state>
       </provider>
