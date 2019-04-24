@@ -57,22 +57,29 @@ public class Home implements ItemListener {
        //// drawingArea.setSize(200,300);
        // drawingArea.setMinimumSize(new Dimension(200,300));
         drawingArea.setBackground(Color.green);
-        drawingArea.setLayout(new BorderLayout(6, 10));
+//        drawingArea.setLayout(new BorderLayout(6, 10));
         drawingArea.setBorder(BorderFactory.createTitledBorder("Draw Here"));
          
         toolsPanel = new JPanel();
       //  toolsPanel.setMinimumSize(new Dimension(100,100));
-        toolsPanel.setLayout(new BorderLayout(6, 10));
+        //toolsPanel.setLayout(new BorderLayout(6, 10));
         split1 = new JSplitPane();
-        split2 = new JSplitPane();
-        split1 = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, drawingArea, toolsPanel);
+        //split2 = new JSplitPane();
+        drawingArea.setLayout(new BorderLayout());
+        split1.setLeftComponent(drawingArea);
+//        split1 = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, drawingArea, toolsPanel);
         //split1.resetToPreferredSizes();
       //  split1.setResizeWeight(1);
-        split2 = new JSplitPane(JSplitPane.VERTICAL_SPLIT, split1, buttonsPanel); 
+        toolsPanel.setLayout(null);
+        toolsPanel.setPreferredSize(new Dimension(800,500));
+        split1.setRightComponent(toolsPanel);
+
        // split2.resetToPreferredSizes();
-       split2.setResizeWeight(1);
+       //split2.setResizeWeight(1);
        // split2 .setMinimumSize(new Dimension(450,350));
-       
+       //buttonsPanel.setLayout(null);
+       buttonsPanel.setPreferredSize(new Dimension(100,30));
+       split2 = new JSplitPane(JSplitPane.VERTICAL_SPLIT, split1, buttonsPanel);
         card2.add(split2);
        
         JPanel card3 = new JPanel();
