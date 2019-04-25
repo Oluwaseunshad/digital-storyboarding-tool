@@ -18,14 +18,24 @@ public class Home implements ItemListener {
     final static String home = "Home";
     final static String createNewSb = "Create New StoryBoard";
     final static String trackReq = "Track Requirements";
-    static JPanel canvasPanel, toolsPanel, buttonsPanel;
+    static JPanel toolsPanel, buttonsPanel;
     static Canvas drawingArea;
    // static ArrayList <String> tools = new ArrayList();
    // static String tools [] = new String[] {"Square, Arrow, Oval, Line"};
     static JButton saveButton, newButton,exitButton;
+    static JLabel toolsLabel;
     static JSplitPane split1;
     static JSplitPane split2;
-    private int drawingArea_width = 200,drawingArea_height =200;
+    static ImageIcon rectangleImage;
+    static ImageIcon ovalImage;
+    static ImageIcon arrowImage;
+    static ImageIcon lineImage;
+    static ImageIcon textboxImage;
+    static JLabel rectangleLabel;
+    static JLabel ovalLabel;
+    static JLabel arrowLabel;
+    static JLabel lineLabel;
+    static JLabel textboxLabel;
 
     public void addComponentToPane(Container pane) {
         //Put the JComboBox in a JPanel to get a nicer look.
@@ -41,46 +51,53 @@ public class Home implements ItemListener {
         card1.add(new JTextField("Homepage", 20));
 
         JPanel card2 = new JPanel();
-       // card2.setSize(300,300);
       
         saveButton = new JButton("Save");
         newButton = new JButton("New");
         exitButton = new JButton("Exit");
-        
         buttonsPanel = new JPanel();
-       // buttonsPanel.setLayout(new GridLayout(2, 1));
         buttonsPanel.add(saveButton);
         buttonsPanel.add(newButton);
-        buttonsPanel.add(exitButton);
+        buttonsPanel.add(exitButton); 
+        buttonsPanel.setPreferredSize(new Dimension(100,30));
+        buttonsPanel.setBackground(Color.white);
         
         drawingArea = new Canvas();
-       //// drawingArea.setSize(200,300);
-       // drawingArea.setMinimumSize(new Dimension(200,300));
-        drawingArea.setBackground(Color.green);
-//        drawingArea.setLayout(new BorderLayout(6, 10));
-        drawingArea.setBorder(BorderFactory.createTitledBorder("Draw Here"));
-         
-        toolsPanel = new JPanel();
-      //  toolsPanel.setMinimumSize(new Dimension(100,100));
-        //toolsPanel.setLayout(new BorderLayout(6, 10));
-        split1 = new JSplitPane();
-        //split2 = new JSplitPane();
+        drawingArea.setBackground(Color.white);
+        drawingArea.setPreferredSize(new Dimension(700,500));
         drawingArea.setLayout(new BorderLayout());
+        drawingArea.setBorder(BorderFactory.createTitledBorder("Create New Storyboard"));  
+        
+        rectangleImage = new ImageIcon(this.getClass().getResource("rectangle.png"));
+        rectangleLabel = new JLabel(rectangleImage);
+        ovalImage = new ImageIcon(this.getClass().getResource("oval.png"));
+        ovalLabel = new JLabel(ovalImage);
+        lineImage = new ImageIcon(this.getClass().getResource("line.png"));
+        lineLabel = new JLabel(lineImage);
+        arrowImage = new ImageIcon(this.getClass().getResource("arrow.png"));
+        arrowLabel = new JLabel(arrowImage);
+        textboxImage = new ImageIcon(this.getClass().getResource("textbox.png"));
+        textboxLabel = new JLabel(textboxImage);
+        toolsLabel = new JLabel("Tools");
+        toolsLabel.setFont(new Font("Serif", Font.PLAIN, 20));
+        toolsPanel = new JPanel();
+        toolsPanel.setBackground(Color.white);
+        toolsPanel.setPreferredSize(new Dimension(100,500));
+        toolsPanel.setLayout(new GridLayout(6,1));
+        toolsPanel.add(toolsLabel);
+        toolsPanel.add(rectangleLabel);
+        toolsPanel.add(ovalLabel);
+        toolsPanel.add(lineLabel);
+        toolsPanel.add(arrowLabel);
+        toolsPanel.add(textboxLabel);
+        
+        split1 = new JSplitPane();
         split1.setLeftComponent(drawingArea);
-//        split1 = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, drawingArea, toolsPanel);
-        //split1.resetToPreferredSizes();
-      //  split1.setResizeWeight(1);
-        toolsPanel.setLayout(null);
-        toolsPanel.setPreferredSize(new Dimension(800,500));
         split1.setRightComponent(toolsPanel);
-
-       // split2.resetToPreferredSizes();
-       //split2.setResizeWeight(1);
-       // split2 .setMinimumSize(new Dimension(450,350));
-       //buttonsPanel.setLayout(null);
-       buttonsPanel.setPreferredSize(new Dimension(100,30));
-       split2 = new JSplitPane(JSplitPane.VERTICAL_SPLIT, split1, buttonsPanel);
+        split2 = new JSplitPane(JSplitPane.VERTICAL_SPLIT, split1, buttonsPanel);
+  
         card2.add(split2);
+        card2.setBackground(Color.yellow);
        
         JPanel card3 = new JPanel();
         card3.add(new JTextField("Track Requirements", 20));
