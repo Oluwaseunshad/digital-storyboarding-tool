@@ -122,7 +122,7 @@ public class Home implements ItemListener {
         list1 = new JList(list1Model);
         list1.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         JScrollPane sp1 = new JScrollPane(list1);
-        sp1.setPreferredSize(new Dimension(400, 100));
+        sp1.setPreferredSize(new Dimension(400, 400));
         list1.setDragEnabled(true);
         list1.setTransferHandler(lh);
         list1.setDropMode(DropMode.ON_OR_INSERT);
@@ -139,7 +139,7 @@ public class Home implements ItemListener {
         list2.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         list2.setDragEnabled(true);
         JScrollPane sp2 = new JScrollPane(list2);
-        sp2.setPreferredSize(new Dimension(400, 100));
+        sp2.setPreferredSize(new Dimension(400, 400));
         list2.setTransferHandler(lh);
         list2.setDropMode(DropMode.INSERT);
         listTwoPops = popupFactory.getPopup(list2, listTwoPopUpPanel, 180, 100);
@@ -157,7 +157,7 @@ public class Home implements ItemListener {
         list3.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         list3.setDragEnabled(true);
         JScrollPane sp3 = new JScrollPane(list3);
-        sp3.setPreferredSize(new Dimension(400, 100));
+        sp3.setPreferredSize(new Dimension(400, 400));
         list3.setTransferHandler(lh);
         list3.setDropMode(DropMode.INSERT);
         listThreePops = popupFactory.getPopup(list3, listThreePopUpPanel, 180, 100);
