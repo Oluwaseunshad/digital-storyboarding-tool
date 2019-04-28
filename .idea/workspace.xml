@@ -2,8 +2,21 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a36f0b7e-861b-48cd-ad5a-4fb108d1130d" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/res/arrow.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/res/line.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/res/oval.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/res/rectangle.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/res/textbox.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/digital-storyboarding-tool.iml" beforeDir="false" afterPath="$PROJECT_DIR$/digital-storyboarding-tool.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/digital-storyboarding-tool/FrameViews/Home$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/digital-storyboarding-tool/FrameViews/Home$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/digital-storyboarding-tool/FrameViews/Home.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/digital-storyboarding-tool/FrameViews/Home.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/FrameViews/Home.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FrameViews/Home.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/FrameViews/arrow.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/FrameViews/line.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/FrameViews/oval.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/FrameViews/rectangle.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/FrameViews/textbox.png" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -17,13 +30,13 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/FrameViews/Home.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="502">
-              <caret line="80" column="56" selection-start-line="80" selection-start-column="56" selection-end-line="80" selection-end-column="56" />
+            <state relative-caret-position="3470">
+              <caret line="641" column="7" selection-start-line="641" selection-start-column="7" selection-end-line="641" selection-end-column="7" />
               <folding>
-                <element signature="e#0#5271#0" expanded="true" />
+                <element signature="e#0#6327#0" expanded="true" />
                 <element signature="imports" expanded="true" />
-                <element signature="e#5199#5200#0" expanded="true" />
-                <element signature="e#5249#5250#0" expanded="true" />
+                <element signature="e#31481#31482#0" expanded="true" />
+                <element signature="e#31531#31532#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -38,6 +51,17 @@
         <option value="Class" />
       </list>
     </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>MouseAdapter</find>
+      <find>shapeCount</find>
+      <find>addSha</find>
+      <find>draggedShape</find>
+      <find>MyShapes</find>
+      <find>createArrowShape</find>
+      <find>Action</find>
+    </findStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -55,11 +79,17 @@
       </list>
     </option>
   </component>
+  <component name="MavenProjectNavigator">
+    <treeState>
+      <expand />
+      <select />
+    </treeState>
+  </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="89" />
-    <option name="y" value="20" />
-    <option name="width" value="720" />
-    <option name="height" value="712" />
+    <option name="x" value="65" />
+    <option name="y" value="24" />
+    <option name="width" value="926" />
+    <option name="height" value="1056" />
   </component>
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
@@ -81,13 +111,12 @@
             <path>
               <item name="StoryBoard" type="b2602c69:ProjectViewProjectNode" />
               <item name="digital-storyboarding-tool" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="out" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="StoryBoard" type="b2602c69:ProjectViewProjectNode" />
               <item name="digital-storyboarding-tool" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="FrameViews" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -102,10 +131,19 @@
     <property name="Repository.Attach.Annotations" value="false" />
     <property name="Repository.Attach.JavaDocs" value="false" />
     <property name="Repository.Attach.Sources" value="false" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1556122878707" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1556495841698" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/lib/SwingStates.jar!/" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/res" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -188,10 +226,10 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="65" y="24" width="928" height="1056" extended-state="4" />
+    <frame x="65" y="-4" width="1855" height="1084" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25623584" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.5249433" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -199,8 +237,8 @@
       <window_info id="UI Designer" order="5" />
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32938644" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.3197492" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32831" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.30094042" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -213,10 +251,10 @@
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="Palette" order="3" />
-      <window_info anchor="right" id="Maven" order="4" />
-      <window_info anchor="right" id="Theme Preview" order="5" />
-      <window_info anchor="right" id="Capture Analysis" order="6" />
-      <window_info anchor="right" id="Palette&#9;" order="7" />
+      <window_info anchor="right" id="Theme Preview" order="4" />
+      <window_info anchor="right" id="Capture Analysis" order="5" />
+      <window_info anchor="right" id="Palette&#9;" order="6" />
+      <window_info anchor="right" id="Maven" order="7" weight="0.32993197" />
     </layout>
   </component>
   <component name="editorHistoryManager">
@@ -227,15 +265,33 @@
     <entry file="file://$PROJECT_DIR$/digital-storyboarding-tool.iml">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
+    <entry file="file://$PROJECT_DIR$/pictures/arrow.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/res/rectangle.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/res/textbox.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/res/line.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/res/arrow.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/res/oval.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/FrameViews/Home.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="502">
-          <caret line="80" column="56" selection-start-line="80" selection-start-column="56" selection-end-line="80" selection-end-column="56" />
+        <state relative-caret-position="3470">
+          <caret line="641" column="7" selection-start-line="641" selection-start-column="7" selection-end-line="641" selection-end-column="7" />
           <folding>
-            <element signature="e#0#5271#0" expanded="true" />
+            <element signature="e#0#6327#0" expanded="true" />
             <element signature="imports" expanded="true" />
-            <element signature="e#5199#5200#0" expanded="true" />
-            <element signature="e#5249#5250#0" expanded="true" />
+            <element signature="e#31481#31482#0" expanded="true" />
+            <element signature="e#31531#31532#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -304,6 +360,7 @@
       </state>
       <state key="ProjectLibrariesConfigurable.UI">
         <settings>
+          <last-edited>mysql-connector</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
