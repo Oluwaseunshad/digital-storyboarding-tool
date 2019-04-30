@@ -11,6 +11,7 @@ package FrameViews;
  */
 import java.awt.*;
 import java.awt.event.*;
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -19,8 +20,9 @@ import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.event.MouseEvent;
 import java.awt.geom.*;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
-import java.io.File;
+import java.io.*;
 import java.io.ObjectInputStream;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -28,7 +30,8 @@ import java.io.FileOutputStream;
 import java.io.ObjectOutputStream;
 import java.sql.*;
 import javax.swing.event.*;
-
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 
 public class Home extends JFrame implements ItemListener {
@@ -37,7 +40,7 @@ public class Home extends JFrame implements ItemListener {
     final static String createNewSb = "Create New StoryBoard";
     final static String trackReq = "Track Requirements";
     static JPanel toolsPanel, buttonsPanel;
-    static DrawingArea drawingArea;
+    DrawingArea drawingArea;
     static JButton saveButton,exitButton, openButton, delButton,clrButton;
     static JLabel toolsLabel;
     static JSplitPane split1;
@@ -101,6 +104,7 @@ public class Home extends JFrame implements ItemListener {
         saveButton.addActionListener(drawingArea);
         exitButton = new JButton("Exit");
         exitButton.addActionListener(drawingArea);
+        openButton = new JButton("Open");
         openButton = new JButton("Open");
         openButton.addActionListener(drawingArea);
         clrButton = new JButton("Clear");
@@ -221,9 +225,9 @@ public class Home extends JFrame implements ItemListener {
             }
         });
         listOnePopUpPanel = new JPanel();
+        listOnePopUpPanel.setLayout(new BorderLayout());
+        listOnePopUpPanel.add(listOneButton, BorderLayout.SOUTH);
         listOnePopUpPanel.add(popUpLabel);
-        listOnePopUpPanel.add(listOneButton);
-        listOnePopUpPanel.setLayout(new GridLayout(2, 1));
         list1 = new JList(list1Model);
         list1.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         JScrollPane sp1 = new JScrollPane(list1);
@@ -231,15 +235,15 @@ public class Home extends JFrame implements ItemListener {
         list1.setDragEnabled(true);
         list1.setTransferHandler(lh);
         list1.setDropMode(DropMode.ON_OR_INSERT);
-        listOnePops = popupFactory.getPopup(list1, listOnePopUpPanel, 180, 100);
+        listOnePops = popupFactory.getPopup(list1, listOnePopUpPanel, 300, 300);
         pan1 = new JPanel(new BorderLayout());
         pan1.add(sp1, BorderLayout.CENTER);
         pan1.setBorder(BorderFactory.createTitledBorder("To-Do"));
 
         listTwoPopUpPanel = new JPanel();
+        listTwoPopUpPanel.setLayout(new BorderLayout());
+        listTwoPopUpPanel.add(listTwoButton, BorderLayout.SOUTH);
         listTwoPopUpPanel.add(listTwoPopUpLabel);
-        listTwoPopUpPanel.add(listTwoButton);
-        listTwoPopUpPanel.setLayout(new GridLayout(2, 1));
         list2 = new JList(list2Model);
         list2.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         list2.setDragEnabled(true);
@@ -255,9 +259,9 @@ public class Home extends JFrame implements ItemListener {
         pan2.setBorder(BorderFactory.createTitledBorder("In Progress"));
 
         listThreePopUpPanel = new JPanel();
+        listThreePopUpPanel.setLayout(new BorderLayout());
+        listThreePopUpPanel.add(listThreeButton, BorderLayout.SOUTH);
         listThreePopUpPanel.add(listThreePopUpLabel);
-        listThreePopUpPanel.add(listThreeButton);
-        listThreePopUpPanel.setLayout(new GridLayout(2, 1));
         list3 = new JList(list3Model);
         list3.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         list3.setDragEnabled(true);
@@ -301,8 +305,14 @@ public class Home extends JFrame implements ItemListener {
                         PreparedStatement statement = connection.prepareStatement("SELECT src FROM requirements WHERE name = ?");
                         statement.setString(1, s);
                         ResultSet rs = statement.executeQuery();
+                        String storyImageName = null;
                         while (rs.next())
-                            popUpLabel.setText(rs.getString(1));
+                            storyImageName = rs.getString(1);
+
+                        Path path = Paths.get(storyImageName);
+                        String fileName  = path.getFileName().toString();
+                        ImageIcon storyImage = createImageIcon("/res/"+fileName);
+                        popUpLabel.setIcon(storyImage);
                         listOnePops.show();
                         connection.close();
                     }catch(Exception e){ System.out.println(e);}
@@ -337,8 +347,14 @@ public class Home extends JFrame implements ItemListener {
                         PreparedStatement statement = connection.prepareStatement("SELECT src FROM requirements WHERE name = ?");
                         statement.setString(1, s);
                         ResultSet rs = statement.executeQuery();
+                        String storyImageName = null;
                         while (rs.next())
-                            listTwoPopUpLabel.setText(rs.getString(1));
+                            storyImageName = rs.getString(1);
+
+                        Path path = Paths.get(storyImageName);
+                        String fileName  = path.getFileName().toString();
+                        ImageIcon storyImage = createImageIcon("/res/"+fileName);
+                        listTwoPopUpLabel.setIcon(storyImage);
                         listTwoPops.show();
                         connection.close();
                     }catch(Exception e){ System.out.println(e);}
@@ -373,8 +389,14 @@ public class Home extends JFrame implements ItemListener {
                         PreparedStatement statement = connection.prepareStatement("SELECT src FROM requirements WHERE name = ?");
                         statement.setString(1, s);
                         ResultSet rs = statement.executeQuery();
+                        String storyImageName = null;
                         while (rs.next())
-                            listThreePopUpLabel.setText(rs.getString(1));
+                            storyImageName = rs.getString(1);
+
+                        Path path = Paths.get(storyImageName);
+                        String fileName  = path.getFileName().toString();
+                        ImageIcon storyImage = createImageIcon("/res/"+fileName);
+                        listThreePopUpLabel.setIcon(storyImage);
                         listThreePops.show();
                         connection.close();
                     }catch(Exception e){ System.out.println(e);}
@@ -617,6 +639,7 @@ public class Home extends JFrame implements ItemListener {
             // Carry out the Save command by letting the user specify
             // an output file and writing the background color and
             // the ArrayList of shapes to the file.
+
             File file;  // The file that the user wants to save.
             JFileChooser fd; // A file dialog that let's the user specify the file.
             fd = new JFileChooser(".");  // Open on current directory.
@@ -634,6 +657,7 @@ public class Home extends JFrame implements ItemListener {
                 if (action != JOptionPane.YES_OPTION)
                     return;
             }
+
             try {
                 Class.forName("com.mysql.cj.jdbc.Driver");
                 Connection connection=DriverManager.getConnection(
@@ -644,14 +668,21 @@ public class Home extends JFrame implements ItemListener {
                         new ObjectOutputStream(new FileOutputStream(file));
                 //System.out.print(file);
                 String fileName = file.getName();
-                String name = fileName.split("\\.")[0];
+                //String name = fileName.split("\\.")[0];
                 out.writeObject(getBackground());
                 out.writeObject(shapes);
                 out.close();
-                statement.setString(1, name);
-                statement.setString(2,file.toString());
+                String imageName = file.toString() + ".jpeg";
+                //BufferedImage image = new  BufferedImage(drawingArea.getWidth(), drawingArea.getHeight(),BufferedImage.TYPE_INT_RGB);
+                BufferedImage image = ScreenImage.createImage(drawingArea);
+                System.out.println("Exporting image: "+imageName);
+                ScreenImage.writeImage(image, imageName);
+
+                statement.setString(1, fileName);
+                statement.setString(2,imageName);
                 statement.executeUpdate();
                 connection.close();
+
             }
             catch (IOException e) {
                 JOptionPane.showMessageDialog(this,
@@ -660,6 +691,7 @@ public class Home extends JFrame implements ItemListener {
             catch (Exception e){
                 System.out.println(e);
             }
+
         } // end doSave()
 
         private void setShapes(Object backgroundColor,Object newShapes)
