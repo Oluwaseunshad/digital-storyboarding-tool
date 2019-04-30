@@ -26,7 +26,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.FileOutputStream;
 import java.io.ObjectOutputStream;
-
+import java.sql.*;
 
 public class Home extends JFrame implements ItemListener {
     JPanel cards; //a panel that uses CardLayout
@@ -373,15 +373,30 @@ public class Home extends JFrame implements ItemListener {
                     return;
             }
             try {
+                Class.forName("com.mysql.cj.jdbc.Driver");
+                Connection connection=DriverManager.getConnection(
+                        "jdbc:mysql://localhost/mydb?user=cs6640&password=12345678&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC");
+                PreparedStatement statement = connection.prepareStatement("INSERT into requirements(name,description,src,status) VALUES (? , 'N/A', ?, 'to-do')");
+
                 ObjectOutputStream out =
                         new ObjectOutputStream(new FileOutputStream(file));
+                //System.out.print(file);
+                String fileName = file.getName();
+                String name = fileName.split("\\.")[0];
                 out.writeObject(getBackground());
                 out.writeObject(shapes);
                 out.close();
+                statement.setString(1, name);
+                statement.setString(2,file.toString());
+                statement.executeUpdate();
+                connection.close();
             }
             catch (IOException e) {
                 JOptionPane.showMessageDialog(this,
                         "Error while trying to write the file:\n" + e.getMessage());
+            }
+            catch (Exception e){
+                System.out.println(e);
             }
         } // end doSave()
 
