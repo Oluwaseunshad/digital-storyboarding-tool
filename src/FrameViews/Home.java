@@ -34,8 +34,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 
-public class Home extends JFrame implements ItemListener {
-    JPanel cards; //a panel that uses CardLayout
+public class Home extends JFrame {
     final static String home = "Home";
     final static String createNewSb = "Create New StoryBoard";
     final static String trackReq = "Track Requirements";
@@ -78,22 +77,14 @@ public class Home extends JFrame implements ItemListener {
 
 
     public void addComponentToPane(Container pane) {
-        //Put the JComboBox in a JPanel to get a nicer look.
-        JPanel comboBoxPane = new JPanel(); //use FlowLayout
-        String comboBoxItems[] = {home, createNewSb, trackReq};
-
+        JTabbedPane tabbedPane = new JTabbedPane();
         lh = new ListTransferHandler();
-        JComboBox cb = new JComboBox(comboBoxItems);
-        cb.setEditable(false);
-        cb.addItemListener(this);
-        comboBoxPane.add(cb);
 
         //Create the "cards".
         JPanel card1 = new JPanel();
         card1.add(new JTextField("Homepage", 20));
 
         JPanel card2 = new JPanel();
-
         drawingArea = new DrawingArea();
         drawingArea.setBackground(Color.white);
         drawingArea.setPreferredSize(new Dimension(700,500));
@@ -157,7 +148,7 @@ public class Home extends JFrame implements ItemListener {
         split1.setLeftComponent(drawingArea);
         split1.setRightComponent(toolsPanel);
         split2 = new JSplitPane(JSplitPane.VERTICAL_SPLIT, split1, buttonsPanel);
-  
+
         card2.add(split2);
         card2.setBackground(Color.yellow);
        
@@ -410,16 +401,12 @@ public class Home extends JFrame implements ItemListener {
             }
         });
 
-        //Create the panel that contains the "cards".
-        cards = new JPanel(new CardLayout());
-        cards.add(card1, home);
-        cards.add(card2, createNewSb);
-        cards.add(card3, trackReq);
+
         pane.setPreferredSize(new Dimension(500, 200));
-        pane.add(comboBoxPane, BorderLayout.WEST);
-        pane.add(cards, BorderLayout.CENTER);
-
-
+        tabbedPane.addTab(home,card1);
+        tabbedPane.addTab(createNewSb, card2);
+        tabbedPane.addTab(trackReq, card3);
+        pane.add(tabbedPane, BorderLayout.CENTER);
     }
 
     private ListCellRenderer<? super String> getRenderer() {
@@ -717,10 +704,6 @@ public class Home extends JFrame implements ItemListener {
         }
     }
 
-    public void itemStateChanged(ItemEvent evt) {
-        CardLayout cl = (CardLayout) (cards.getLayout());
-        cl.show(cards, (String) evt.getItem());
-    }
 
     /**
      * Create the GUI and show it.  For thread safety,
@@ -762,9 +745,6 @@ public class Home extends JFrame implements ItemListener {
             while (rs3.next())
                 doneElements.add(rs3.getString(1));
             connection.close();
-           /* PreparedStatement ps = connection.prepareStatement("CREATE DATABASE mydb");
-            int result = ps.executeUpdate();
-            System.out.print(result);*/
         } catch (Exception e) {
             System.out.println(e);
         }
@@ -822,9 +802,6 @@ public class Home extends JFrame implements ItemListener {
                 statement.setString(1, addedContenttoList2);
                 statement.executeUpdate();
                 connection.close();
-           /* PreparedStatement ps = connection.prepareStatement("CREATE DATABASE mydb");
-            int result = ps.executeUpdate();
-            System.out.print(result);*/
             }catch(Exception e){ System.out.println(e);}
         }
 
@@ -874,9 +851,6 @@ public class Home extends JFrame implements ItemListener {
                 statement.setString(1, addedContenttoList3);
                 statement.executeUpdate();
                 connection.close();
-           /* PreparedStatement ps = connection.prepareStatement("CREATE DATABASE mydb");
-            int result = ps.executeUpdate();
-            System.out.print(result);*/
             }catch(Exception e){ System.out.println(e);}
         }
 
