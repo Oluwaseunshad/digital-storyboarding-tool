@@ -3,6 +3,17 @@
   <component name="ChangeListManager">
     <list default="true" id="a36f0b7e-861b-48cd-ad5a-4fb108d1130d" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/digital-storyboarding-tool/FrameViews/Home$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/digital-storyboarding-tool/FrameViews/Home$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/digital-storyboarding-tool/FrameViews/Home$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/digital-storyboarding-tool/FrameViews/Home$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/digital-storyboarding-tool/FrameViews/Home$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/digital-storyboarding-tool/FrameViews/Home$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/digital-storyboarding-tool/FrameViews/Home$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/digital-storyboarding-tool/FrameViews/Home$4.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/digital-storyboarding-tool/FrameViews/Home$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/digital-storyboarding-tool/FrameViews/Home$5.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/digital-storyboarding-tool/FrameViews/Home$6.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/digital-storyboarding-tool/FrameViews/Home$6.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/digital-storyboarding-tool/FrameViews/Home$7.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/digital-storyboarding-tool/FrameViews/Home$8.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/digital-storyboarding-tool/FrameViews/Home$ListThreeDataListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/digital-storyboarding-tool/FrameViews/Home$ListThreeDataListener.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/digital-storyboarding-tool/FrameViews/Home$ListTwoDataListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/digital-storyboarding-tool/FrameViews/Home$ListTwoDataListener.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/digital-storyboarding-tool/FrameViews/Home.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/digital-storyboarding-tool/FrameViews/Home.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/FrameViews/Home.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FrameViews/Home.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -17,12 +28,18 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/FrameViews/Home.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="539">
-              <caret line="876" column="1" lean-forward="true" selection-start-line="876" selection-start-column="1" selection-end-line="876" selection-end-column="1" />
+            <state relative-caret-position="-1135">
+              <caret line="794" column="8" selection-start-line="794" selection-start-column="8" selection-end-line="794" selection-end-column="8" />
               <folding>
+                <element signature="e#0#37760#0" expanded="true" />
                 <element signature="imports" expanded="true" />
-                <element signature="e#35744#35745#0" expanded="true" />
-                <element signature="e#35794#35795#0" expanded="true" />
+                <element signature="e#12121#14175#0" expanded="true" />
+                <element signature="e#14174#14175#0" expanded="true" />
+                <element signature="e#14210#16271#0" expanded="true" />
+                <element signature="e#16270#16271#0" expanded="true" />
+                <element signature="e#16306#18371#0" expanded="true" />
+                <element signature="e#18370#18371#0" expanded="true" />
+                <element signature="e#36550#36551#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -63,6 +80,11 @@
       <find>listOneButton</find>
       <find>select</find>
       <find>cards</find>
+      <find>tabbedPane</find>
+      <find>toDoElements</find>
+      <find>card3</find>
+      <find>list1Model</find>
+      <find>addComponentToPane</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -90,10 +112,10 @@
       <select />
     </treeState>
   </component>
-  <component name="ProjectFrameBounds" extendedState="4">
-    <option name="x" value="992" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="65" />
     <option name="y" value="24" />
-    <option name="width" value="928" />
+    <option name="width" value="924" />
     <option name="height" value="1056" />
   </component>
   <component name="ProjectLevelVcsManager">
@@ -142,7 +164,7 @@
     <property name="Repository.Attach.Annotations" value="false" />
     <property name="Repository.Attach.JavaDocs" value="false" />
     <property name="Repository.Attach.Sources" value="false" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1556670060769" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1556948382634" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../Downloads/mysql-connector-java-8.0.15/mysql-connector-java-8.0.15.jar!/" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
@@ -250,10 +272,10 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="992" y="24" width="928" height="1056" extended-state="4" />
+    <frame x="65" y="-4" width="1855" height="1084" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25510204" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.12437811" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -262,7 +284,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3291536" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.2992465" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.2904911" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -338,12 +360,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/FrameViews/Home.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="539">
-          <caret line="876" column="1" lean-forward="true" selection-start-line="876" selection-start-column="1" selection-end-line="876" selection-end-column="1" />
+        <state relative-caret-position="-1135">
+          <caret line="794" column="8" selection-start-line="794" selection-start-column="8" selection-end-line="794" selection-end-column="8" />
           <folding>
+            <element signature="e#0#37760#0" expanded="true" />
             <element signature="imports" expanded="true" />
-            <element signature="e#35744#35745#0" expanded="true" />
-            <element signature="e#35794#35795#0" expanded="true" />
+            <element signature="e#12121#14175#0" expanded="true" />
+            <element signature="e#14174#14175#0" expanded="true" />
+            <element signature="e#14210#16271#0" expanded="true" />
+            <element signature="e#16270#16271#0" expanded="true" />
+            <element signature="e#16306#18371#0" expanded="true" />
+            <element signature="e#18370#18371#0" expanded="true" />
+            <element signature="e#36550#36551#0" expanded="true" />
           </folding>
         </state>
       </provider>
