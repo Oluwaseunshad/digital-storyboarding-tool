@@ -5,13 +5,8 @@
  */
 package FrameViews;
 
-/**
- *
- * @author dakua
- */
 import java.awt.*;
 import java.awt.event.*;
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -40,7 +35,7 @@ public class Home extends JFrame {
     final static String trackReq = "Track Requirements";
     static JPanel toolsPanel, buttonsPanel;
     DrawingArea drawingArea;
-    static JButton saveButton,exitButton, openButton, delButton,clrButton;
+    static JButton saveButton,exitButton, openButton,clrButton;
     static JLabel toolsLabel;
     static JSplitPane split1;
     static JSplitPane split2;
@@ -61,7 +56,7 @@ public class Home extends JFrame {
     DefaultListModel list3Model = new DefaultListModel();
     static JList list1, list2, list3;
     static JPanel pan1, pan2, pan3;
-    static ArrayList <String> toDoElements = new ArrayList();
+    static ArrayList <String> toDoElements = new ArrayList();;
     static ArrayList <String> inProgressElements = new ArrayList();
     static ArrayList <String> doneElements = new ArrayList();
     static Popup listOnePops;
@@ -74,10 +69,11 @@ public class Home extends JFrame {
     static JLabel popUpLabel;
     static JLabel listTwoPopUpLabel;
     static JLabel listThreePopUpLabel;
+    static JTabbedPane tabbedPane;
 
 
     public void addComponentToPane(Container pane) {
-        JTabbedPane tabbedPane = new JTabbedPane();
+        tabbedPane = new JTabbedPane();
         lh = new ListTransferHandler();
 
         //Create the "cards".
@@ -96,16 +92,12 @@ public class Home extends JFrame {
         exitButton = new JButton("Exit");
         exitButton.addActionListener(drawingArea);
         openButton = new JButton("Open");
-        openButton = new JButton("Open");
         openButton.addActionListener(drawingArea);
         clrButton = new JButton("Clear");
         clrButton.addActionListener(drawingArea);
-        delButton = new JButton("Delete");
-        delButton.addActionListener(drawingArea);
         buttonsPanel = new JPanel();
         buttonsPanel.add(openButton);
         buttonsPanel.add(clrButton);
-        buttonsPanel.add(delButton);
         buttonsPanel.add(saveButton);
         buttonsPanel.add(exitButton); 
         buttonsPanel.setPreferredSize(new Dimension(100,30));
@@ -153,6 +145,28 @@ public class Home extends JFrame {
         card2.setBackground(Color.yellow);
        
         JPanel card3 = new JPanel();
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection connection = DriverManager.getConnection(
+                    "jdbc:mysql://localhost/mydb?user=cs6640&password=12345678&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC");
+            Statement stmt = connection.createStatement();
+            ResultSet rs = stmt.executeQuery("select name from requirements where status='to-do'");
+            PreparedStatement ps = connection.prepareStatement("select name from requirements where status='inProgress'");
+            PreparedStatement ps2 = connection.prepareStatement("select name from requirements where status='done'");
+            ResultSet rs2 = ps.executeQuery();
+            ResultSet rs3 = ps2.executeQuery();
+            toDoElements = new ArrayList();
+            while (rs.next())
+                toDoElements.add(rs.getString(1));
+            while (rs2.next())
+                inProgressElements.add(rs2.getString(1));
+            while (rs3.next())
+                doneElements.add(rs3.getString(1));
+            connection.close();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+
         for (int i = 0; i < toDoElements.size(); i++) {
             list1Model.addElement(toDoElements.get(i));
         }
@@ -406,6 +420,57 @@ public class Home extends JFrame {
         tabbedPane.addTab(home,card1);
         tabbedPane.addTab(createNewSb, card2);
         tabbedPane.addTab(trackReq, card3);
+        ChangeListener changeListener = new ChangeListener() {
+            public void stateChanged(ChangeEvent changeEvent) {
+                JTabbedPane sourceTabbedPane = (JTabbedPane) changeEvent.getSource();
+                int index = sourceTabbedPane.getSelectedIndex();
+                if (sourceTabbedPane.getTitleAt(index).equalsIgnoreCase(trackReq)){
+                    try {
+                        Class.forName("com.mysql.cj.jdbc.Driver");
+                        Connection connection = DriverManager.getConnection(
+                                "jdbc:mysql://localhost/mydb?user=cs6640&password=12345678&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC");
+                        Statement stmt = connection.createStatement();
+                        ResultSet rs = stmt.executeQuery("select name from requirements where status='to-do'");
+                        PreparedStatement ps = connection.prepareStatement("select name from requirements where status='inProgress'");
+                        PreparedStatement ps2 = connection.prepareStatement("select name from requirements where status='done'");
+                        ResultSet rs2 = ps.executeQuery();
+                        ResultSet rs3 = ps2.executeQuery();
+                        toDoElements = new ArrayList();
+                        inProgressElements = new ArrayList();
+                        doneElements = new ArrayList();
+                        while (rs.next())
+                            toDoElements.add(rs.getString(1));
+                        while (rs2.next())
+                            inProgressElements.add(rs2.getString(1));
+                        while (rs3.next())
+                            doneElements.add(rs3.getString(1));
+                        connection.close();
+                    } catch (Exception e) {
+                        System.out.println(e);
+                    }
+                    DefaultListModel newList1Model = new DefaultListModel();
+                    DefaultListModel newList2Model = new DefaultListModel();
+                    DefaultListModel newList3Model = new DefaultListModel();
+
+                    for (int i = 0; i < toDoElements.size(); i++) {
+                        newList1Model.addElement(toDoElements.get(i));
+                    }
+                    for (int i = 0; i < inProgressElements.size(); i++) {
+                        newList2Model.addElement(inProgressElements.get(i));
+                    }
+                    for (int i = 0; i < doneElements.size(); i++) {
+                        newList3Model.addElement(doneElements.get(i));
+                    }
+
+                    list1.setModel(newList1Model);
+                    list2.setModel(newList2Model);
+                    newList2Model.addListDataListener(new ListTwoDataListener());
+                    list3.setModel(newList3Model);
+                    newList3Model.addListDataListener(new ListThreeDataListener());
+                }
+            }
+        };
+        tabbedPane.addChangeListener(changeListener);
         pane.add(tabbedPane, BorderLayout.CENTER);
     }
 
@@ -727,28 +792,7 @@ public class Home extends JFrame {
 
 
     public static void main(String[] args) {
-
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection connection = DriverManager.getConnection(
-                    "jdbc:mysql://localhost/mydb?user=cs6640&password=12345678&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC");
-            Statement stmt = connection.createStatement();
-            ResultSet rs = stmt.executeQuery("select name from requirements where status='to-do'");
-            PreparedStatement ps = connection.prepareStatement("select name from requirements where status='inProgress'");
-            PreparedStatement ps2 = connection.prepareStatement("select name from requirements where status='done'");
-            ResultSet rs2 = ps.executeQuery();
-            ResultSet rs3 = ps2.executeQuery();
-            while (rs.next())
-                toDoElements.add(rs.getString(1));
-            while (rs2.next())
-                inProgressElements.add(rs2.getString(1));
-            while (rs3.next())
-                doneElements.add(rs3.getString(1));
-            connection.close();
-        } catch (Exception e) {
-            System.out.println(e);
-        }
-        /* Use an appropriate Look and Feel */
+         /* Use an appropriate Look and Feel */
 
         try {
             //UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
@@ -775,6 +819,8 @@ public class Home extends JFrame {
                 createAndShowGUI();
             }
         });
+
+
     }
 
     class ListTwoDataListener implements ListDataListener {
