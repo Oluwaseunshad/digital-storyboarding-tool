@@ -122,7 +122,7 @@ public class Home extends JFrame {
         textboxImage = createImageIcon("/res/textbox.png");
         textboxButton = new JButton(textboxImage);
         textboxButton.setActionCommand("TextBox");
-        //textboxButton.addActionListener(drawingArea);
+        textboxButton.addActionListener(drawingArea);
         toolsLabel = new JLabel("Tools");
         toolsLabel.setFont(new Font("Serif", Font.PLAIN, 20));
         toolsPanel = new JPanel();
@@ -500,8 +500,8 @@ public class Home extends JFrame {
 
     class DrawingArea extends JComponent implements ActionListener {
         ArrayList<Shape> shapes = new ArrayList();
-
         Point startDrag, endDrag;
+        private int mouseX = 0, mouseY = 0;
         Shape r = null;
         public DrawingArea() {
             this.addMouseListener(new MouseAdapter() {
@@ -509,6 +509,10 @@ public class Home extends JFrame {
                     if (flag == 4){
                         r = new Line2D.Double(e.getPoint(), e.getPoint());
                         shapes.add(r);
+                    }
+                    else if (flag == 5){
+                        mouseX = e.getX();
+                        mouseY = e.getY();
                     }
                     else {
                         startDrag = new Point(e.getX(), e.getY());
@@ -549,6 +553,7 @@ public class Home extends JFrame {
                         shapes.add(new Line2D.Double(end, end1));
 
                     }
+
                    if (r != null)
                        shapes.add(r);
                    startDrag = null;
@@ -564,8 +569,14 @@ public class Home extends JFrame {
                         Line2D shape = (Line2D)r;
                         shape.setLine(shape.getP1(), e.getPoint());
                     }
+                    else if(flag == 5){
+                        shapes.add(makeLine(mouseX, mouseY, e.getX(), e.getY()));
+                        mouseX = e.getX();
+                        mouseY = e.getY();
+                    }
                     else {
                         endDrag = new Point(e.getX(), e.getY());
+
                     }
                     repaint();
                 }
@@ -622,8 +633,8 @@ public class Home extends JFrame {
                 flag = 3;
             } else if (command.equals("Arrow"))
                 flag = 4;
-            /*else if(command.equals("TextBox"))
-                //flag = 1;*/
+            else if(command.equals("TextBox"))
+                flag = 5;
             else if (command.equals("Open")) {
                 flag = 0;
                 doOpen();
