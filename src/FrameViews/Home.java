@@ -35,7 +35,7 @@ public class Home extends JFrame {
     final static String trackReq = "Track Requirements";
     static JPanel toolsPanel, buttonsPanel;
     DrawingArea drawingArea;
-    static JButton saveButton,exitButton, openButton,clrButton;
+    static JButton saveButton,exitButton, openButton,clrButton, undoButton;
     static JLabel toolsLabel;
     static JSplitPane split1;
     static JSplitPane split2;
@@ -95,11 +95,14 @@ public class Home extends JFrame {
         openButton.addActionListener(drawingArea);
         clrButton = new JButton("Clear");
         clrButton.addActionListener(drawingArea);
+        undoButton = new JButton("Undo");
+        undoButton.addActionListener(drawingArea);
         buttonsPanel = new JPanel();
         buttonsPanel.add(openButton);
         buttonsPanel.add(clrButton);
         buttonsPanel.add(saveButton);
-        buttonsPanel.add(exitButton); 
+        buttonsPanel.add(undoButton);
+        buttonsPanel.add(exitButton);
         buttonsPanel.setPreferredSize(new Dimension(100,30));
         buttonsPanel.setBackground(Color.white);
 
@@ -561,6 +564,7 @@ public class Home extends JFrame {
                    r = null;
                    repaint();
                 }
+
             });
 
             this.addMouseMotionListener(new MouseMotionAdapter() {
@@ -635,6 +639,20 @@ public class Home extends JFrame {
                 flag = 4;
             else if(command.equals("TextBox"))
                 flag = 5;
+            else if (command.equals("Undo")){
+                if (flag == 1 || flag == 2 || flag == 3){
+                    if( shapes.size() > 0 )
+                        shapes.remove( shapes.size() - 1 );
+                }
+                else if (flag == 4){
+                        for (int i=0; i < 5; ++i){
+                            if( shapes.size() > 0 ){
+                                shapes.remove( shapes.size() - 1 );
+                            }
+                        }
+                }
+                repaint();
+            }
             else if (command.equals("Open")) {
                 flag = 0;
                 doOpen();
