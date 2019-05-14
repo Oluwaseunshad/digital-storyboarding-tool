@@ -2,18 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a36f0b7e-861b-48cd-ad5a-4fb108d1130d" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/digital-storyboarding-tool/FrameViews/Home$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/digital-storyboarding-tool/FrameViews/Home$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/digital-storyboarding-tool/FrameViews/Home$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/digital-storyboarding-tool/FrameViews/Home$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/digital-storyboarding-tool/FrameViews/Home$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/digital-storyboarding-tool/FrameViews/Home$3.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/digital-storyboarding-tool/FrameViews/Home$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/digital-storyboarding-tool/FrameViews/Home$4.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/digital-storyboarding-tool/FrameViews/Home$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/digital-storyboarding-tool/FrameViews/Home$5.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/digital-storyboarding-tool/FrameViews/Home$6.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/digital-storyboarding-tool/FrameViews/Home$6.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/digital-storyboarding-tool/FrameViews/Home$7.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/digital-storyboarding-tool/FrameViews/Home$7.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/digital-storyboarding-tool/FrameViews/Home$8.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/digital-storyboarding-tool/FrameViews/Home$8.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/digital-storyboarding-tool/FrameViews/Home$ListThreeDataListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/digital-storyboarding-tool/FrameViews/Home$ListThreeDataListener.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/digital-storyboarding-tool/FrameViews/Home$ListTwoDataListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/digital-storyboarding-tool/FrameViews/Home$ListTwoDataListener.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/digital-storyboarding-tool/FrameViews/Home.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/digital-storyboarding-tool/FrameViews/Home.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/FrameViews/Home.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FrameViews/Home.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -28,8 +16,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/FrameViews/Home.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="234">
-              <caret line="52" selection-start-line="52" selection-end-line="52" />
+            <state relative-caret-position="375">
+              <caret line="84" column="6" selection-start-line="84" selection-start-column="6" selection-end-line="84" selection-end-column="6" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#27811#27812#0" expanded="true" />
@@ -89,6 +77,8 @@
       <find>add</find>
       <find>add(</find>
       <find>undoFLag</find>
+      <find>array</find>
+      <find>cardLa</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -296,7 +286,7 @@
       <window_info anchor="bottom" id="Terminal" order="7" />
       <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" weight="0.3291536" />
       <window_info anchor="bottom" id="Version Control" order="9" />
-      <window_info anchor="bottom" id="Messages" order="10" weight="0.16469322" />
+      <window_info anchor="bottom" id="Messages" order="10" weight="0.16405433" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -354,8 +344,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/FrameViews/Home.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="52" selection-start-line="52" selection-end-line="52" />
+        <state relative-caret-position="375">
+          <caret line="84" column="6" selection-start-line="84" selection-start-column="6" selection-end-line="84" selection-end-column="6" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#27811#27812#0" expanded="true" />

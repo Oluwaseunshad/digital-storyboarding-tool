@@ -78,7 +78,12 @@ public class Home extends JFrame {
 
         //Create the "cards".
         JPanel card1 = new JPanel();
-        card1.add(new JTextField("Homepage", 20));
+        JLabel homePage = new JLabel("Trackable Digital Storyboarding Tool for Improving Requirement Gathering", JLabel.CENTER);
+        homePage.setFont(new Font("Serif", Font.PLAIN, 32));
+        homePage.setHorizontalAlignment(JLabel.CENTER);
+        homePage.setVerticalAlignment(JLabel.CENTER);
+        card1.add(homePage);
+
 
         JPanel card2 = new JPanel();
         drawingArea = new DrawingArea();
@@ -325,11 +330,6 @@ public class Home extends JFrame {
                         connection.close();
                     }catch(Exception e){ System.out.println(e);}
 
-                } else if (evt.getClickCount() == 3) {
-
-                    // Triple-click detected
-                    int index = list.locationToIndex(evt.getPoint());
-                    System.out.println("index: " + index);
                 }
             }
         });
