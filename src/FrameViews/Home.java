@@ -858,7 +858,6 @@ public class Home extends JFrame {
             DefaultListModel model = (DefaultListModel) evt.getSource();
             int start = evt.getIndex0();
             int end = evt.getIndex1();
-            int count = end - start + 1;
             Object item = null;
 
             for (int i = start; i <= end; i++) {
@@ -883,7 +882,6 @@ public class Home extends JFrame {
         public void intervalRemoved(ListDataEvent evt) {
             int start = evt.getIndex0();
             int end = evt.getIndex1();
-            int count = end - start + 1;
             System.out.println("intervalRemoved: " + start +
                     ", " + end);
         }
@@ -892,7 +890,6 @@ public class Home extends JFrame {
             DefaultListModel model = (DefaultListModel) evt.getSource();
             int start = evt.getIndex0();
             int end = evt.getIndex1();
-            int count = end - start + 1;
             for (int i = start; i <= end; i++) {
                 Object item = model.getElementAt(i);
             }
@@ -907,7 +904,6 @@ public class Home extends JFrame {
             DefaultListModel model = (DefaultListModel) evt.getSource();
             int start = evt.getIndex0();
             int end = evt.getIndex1();
-            int count = end - start + 1;
             Object item = null;
 
             for (int i = start; i <= end; i++) {
@@ -932,7 +928,6 @@ public class Home extends JFrame {
         public void intervalRemoved(ListDataEvent evt) {
             int start = evt.getIndex0();
             int end = evt.getIndex1();
-            int count = end - start + 1;
             System.out.println("intervalRemoved: " + start +
                     ", " + end);
         }
@@ -941,7 +936,6 @@ public class Home extends JFrame {
             DefaultListModel model = (DefaultListModel) evt.getSource();
             int start = evt.getIndex0();
             int end = evt.getIndex1();
-            int count = end - start + 1;
             for (int i = start; i <= end; i++) {
                 Object item = model.getElementAt(i);
             }
