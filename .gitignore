@@ -25,5 +25,5 @@
 hs_err_pid*
 
 #resource folder
-res/
+src/res/
 
