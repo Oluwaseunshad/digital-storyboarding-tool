@@ -190,10 +190,7 @@ public class Home extends JFrame {
         listThreePopUpLabel = new JLabel("");
         // create a new button
         JButton listOneButton = new JButton("OK");
-        listOneButton.addActionListener(new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent e) {
+        listOneButton.addActionListener(e -> {
                 //your actions
                 String d = e.getActionCommand();
                 // if ok buton is pressed hide the popup
@@ -203,13 +200,9 @@ public class Home extends JFrame {
                     // create a popup
                     listOnePops = popupFactory.getPopup(list1, listOnePopUpPanel, 180, 100);
                 }
-            }
         });
         JButton listTwoButton = new JButton("OK");
-        listTwoButton.addActionListener(new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent e) {
+        listTwoButton.addActionListener(e -> {
                 //your actions
                 String d = e.getActionCommand();
                 // if ok buton is pressed hide the popup
@@ -219,13 +212,10 @@ public class Home extends JFrame {
                     // create a popup
                     listTwoPops = popupFactory.getPopup(list2, listTwoPopUpPanel, 180, 100);
                 }
-            }
         });
-        JButton listThreeButton = new JButton("OK");
-        listThreeButton.addActionListener(new ActionListener() {
 
-            @Override
-            public void actionPerformed(ActionEvent e) {
+        JButton listThreeButton = new JButton("OK");
+        listThreeButton.addActionListener(e -> {
                 //your actions
                 String d = e.getActionCommand();
                 // if ok buton is pressed hide the popup
@@ -235,7 +225,6 @@ public class Home extends JFrame {
                     // create a popup
                     listThreePops = popupFactory.getPopup(list3, listThreePopUpPanel, 180, 100);
                 }
-            }
         });
         listOnePopUpPanel = new JPanel();
         listOnePopUpPanel.setLayout(new BorderLayout());
@@ -423,8 +412,7 @@ public class Home extends JFrame {
         tabbedPane.addTab(home,card1);
         tabbedPane.addTab(createNewSb, card2);
         tabbedPane.addTab(trackReq, card3);
-        ChangeListener changeListener = new ChangeListener() {
-            public void stateChanged(ChangeEvent changeEvent) {
+        ChangeListener changeListener = changeEvent ->  {
                 JTabbedPane sourceTabbedPane = (JTabbedPane) changeEvent.getSource();
                 int index = sourceTabbedPane.getSelectedIndex();
                 if (sourceTabbedPane.getTitleAt(index).equalsIgnoreCase(trackReq)){
@@ -471,7 +459,6 @@ public class Home extends JFrame {
                     list3.setModel(newList3Model);
                     newList3Model.addListDataListener(new ListThreeDataListener());
                 }
-            }
         };
         tabbedPane.addChangeListener(changeListener);
         pane.add(tabbedPane, BorderLayout.CENTER);
